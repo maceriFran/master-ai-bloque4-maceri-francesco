@@ -14,10 +14,15 @@ load_dotenv()
 
 OPENROUTER = "https://openrouter.ai/api/v1"
 
-# Precios en USD por millón de tokens (entrada, salida), con el id del modelo tal y como
-# va en .env, p. ej. "openai/gpt-5.4-mini". Rellénalos con https://openrouter.ai/models:
-# cambian a menudo y no conviene fiarse de la memoria.
-PRECIOS: dict[str, tuple[float, float]] = {}
+# Precios estándar de texto en USD por millón de tokens (entrada, salida).
+# Fuente: https://openrouter.ai/api/v1/models, consultada el 2026-10-13.
+# pricing.prompt y pricing.completion vienen por token: se multiplican por 1_000_000.
+# Estimación sin descuentos de caché ni cargos por herramientas; puede cambiar.
+PRECIOS: dict[str, tuple[float, float]] = {
+    "openai/gpt-5.4-mini": (0.75, 4.50),
+    "anthropic/claude-haiku-4.5": (1.00, 5.00),
+    "google/gemini-3.8-flash": (0.75, 3.75),
+}
 
 
 @dataclass
@@ -71,33 +76,50 @@ class LLM:
         else:
             raise ValueError(f"Proveedor no soportado: {proveedor}")
 
-    def responder(self, sistema: str, prompt: str, temperatura: float | None = None) -> Respuesta:
+    def responder(self, sistema: str, prompt: str, temperatura: float | None = None,
+                  max_tokens: int | None = None) -> Respuesta:
+        """Límite opcional de salida; cada API contabiliza sus propios tokens.
+
+        None omite el límite salvo en Messages, que requiere uno (512).
+        Los tokens de salida pueden incluir razonamiento y no solo texto visible.
+        """
         extra = {} if temperatura is None else {"temperature": temperatura}
         t0 = time.perf_counter()
         if self.formato == "responses":
-            # TODO 1 (P3): OpenAI con la Responses API. Llama a self._c.responses.create(...)
-            # con self.modelo, el sistema, el prompt y **extra, y rellena texto, t_in y t_out.
-            # Pista: con_openai() en s1_hola_tres.py hace la misma llamada.
-            raise NotImplementedError("TODO 1: rama 'responses' (OpenAI)")
+            if max_tokens is not None:
+                extra["max_output_tokens"] = max_tokens
+            r = self._c.responses.create(
+                model=self.modelo, instructions=sistema, input=prompt, **extra
+            )
+            texto, t_in, t_out = r.output_text, r.usage.input_tokens, r.usage.output_tokens
         elif self.formato == "messages":
-            # TODO 2 (P3): Claude con la Messages API. Llama a self._c.messages.create(...).
-            # Ojo: max_tokens es obligatorio, el sistema no va dentro de messages y el texto
-            # llega repartido en bloques. Pista: con_claude() en s1_hola_tres.py.
-            raise NotImplementedError("TODO 2: rama 'messages' (Claude)")
+            r = self._c.messages.create(
+                model=self.modelo, system=sistema,
+                messages=[{"role": "user", "content": prompt}],
+                max_tokens=512 if max_tokens is None else max_tokens,
+                **extra,
+            )
+            texto = "".join(b.text for b in r.content if b.type == "text")
+            t_in, t_out = r.usage.input_tokens, r.usage.output_tokens
         elif self.formato == "interactions":
+            if max_tokens is not None:
+                extra["max_output_tokens"] = max_tokens
             config = {"generation_config": extra} if extra else {}
             r = self._c.interactions.create(
                 model=self.modelo, system_instruction=sistema, input=prompt, **config
             )
             texto, t_in, t_out = r.output_text, r.usage.total_input_tokens, r.usage.total_output_tokens
         else:  # Chat Completions, el formato "clásico" de OpenAI que imitan casi todos
-            # Esta rama ya está hecha: úsala de modelo para las dos de arriba.
+            # OpenRouter y Ollama admiten max_tokens en Chat Completions.
+            if max_tokens is not None:
+                extra["max_tokens"] = max_tokens
             r = self._c.chat.completions.create(
                 model=self.modelo,
                 messages=[{"role": "system", "content": sistema}, {"role": "user", "content": prompt}],
                 **extra,
             )
-            texto = r.choices[0].message.content
+            # Puede llegar None si el presupuesto se consume sin texto visible.
+            texto = r.choices[0].message.content or ""
             t_in, t_out = r.usage.prompt_tokens, r.usage.completion_tokens
         return Respuesta(texto, t_in, t_out, time.perf_counter() - t0, self.modelo)
 
