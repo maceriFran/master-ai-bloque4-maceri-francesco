@@ -17,11 +17,14 @@ with open("comparativa.csv", "w", newline="", encoding="utf-8") as f:
     w = csv.writer(f)
     w.writerow(["proveedor", "correo", "segundos", "tokens_entrada", "tokens_salida",
                 "coste_usd", "calidad_1a5", "respuesta"])
-    # TODO (P4): para cada proveedor ("openai", "claude" y "gemini"), crea UN LLM y pásale
-    # cada correo de CORREOS con el mismo SISTEMA. Por cada respuesta, escribe una fila con
-    # las columnas de la cabecera y en el mismo orden: los segundos con dos decimales y
-    # calidad_1a5 vacía (la puntuáis luego en equipo). Imprime una línea por llamada para
-    # ver el avance; con 3 proveedores y 5 correos son 15 llamadas.
-    pass
+    for proveedor in ("openai", "claude", "gemini"):
+        llm = LLM(proveedor)
+        for numero, correo in enumerate(CORREOS, start=1):
+            r = llm.responder(SISTEMA, correo)
+            w.writerow([proveedor, correo, f"{r.segundos:.2f}", r.tokens_entrada,
+                        r.tokens_salida, r.coste_usd, "", r.texto])
+            f.flush()  # Conserva cada resultado terminado si falla una llamada posterior.
+            print(f"{proveedor:7} correo {numero}/{len(CORREOS)}: "
+                  f"{r.segundos:.2f} s | {r.tokens_entrada}/{r.tokens_salida} tokens", flush=True)
 
 print("Hecho: abre comparativa.csv y puntúa la columna calidad_1a5 en equipo.")
