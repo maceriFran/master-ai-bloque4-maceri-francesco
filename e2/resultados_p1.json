@@ -1,0 +1,833 @@
+[
+  {
+    "proveedor": "OpenAI",
+    "correo": "Necesito 20 kg del blend de hostelería para el viernes. Bar La Esquina.",
+    "esperado": "pedido",
+    "reutilizado": true,
+    "resultado": {
+      "tipo": "pedido",
+      "cliente": "Bar La Esquina",
+      "lineas": [
+        {
+          "producto": "blend de hostelería",
+          "cantidad": 20
+        }
+      ],
+      "urgente": true,
+      "resumen": "Pedido de 20 kg de blend de hostelería para el viernes del Bar La Esquina."
+    },
+    "caso": 1,
+    "acierto": true,
+    "avisos": []
+  },
+  {
+    "proveedor": "OpenAI",
+    "correo": "El molino hace un ruido raro desde ayer, ¿podéis venir?",
+    "esperado": "incidencia",
+    "reutilizado": true,
+    "resultado": {
+      "tipo": "incidencia",
+      "cliente": null,
+      "lineas": [],
+      "urgente": true,
+      "resumen": "El cliente informa de que el molino hace un ruido raro desde ayer y pide asistencia."
+    },
+    "caso": 2,
+    "acierto": true,
+    "avisos": []
+  },
+  {
+    "proveedor": "OpenAI",
+    "correo": "¿Tenéis café descafeinado de especialidad?",
+    "esperado": "consulta",
+    "reutilizado": true,
+    "resultado": {
+      "tipo": "consulta",
+      "cliente": null,
+      "lineas": [],
+      "urgente": false,
+      "resumen": "El cliente pregunta si disponéis de café descafeinado de especialidad."
+    },
+    "caso": 3,
+    "acierto": true,
+    "avisos": []
+  },
+  {
+    "proveedor": "OpenAI",
+    "correo": "Mandadme 5 kg de Etiopía y, de paso, la cafetera gotea. Lumbre.",
+    "esperado": "mixto",
+    "reutilizado": true,
+    "resultado": {
+      "tipo": "mixto",
+      "cliente": "Lumbre",
+      "lineas": [
+        {
+          "producto": "Etiopía",
+          "cantidad": 5
+        }
+      ],
+      "urgente": false,
+      "resumen": "Piden 5 kg de café Etiopía y avisan de que la cafetera gotea."
+    },
+    "caso": 4,
+    "acierto": true,
+    "avisos": []
+  },
+  {
+    "proveedor": "OpenAI",
+    "correo": "URGENTE: sin café para mañana, 10 kg de blend. Hotel Prado Suites",
+    "esperado": "pedido",
+    "reutilizado": true,
+    "resultado": {
+      "tipo": "pedido",
+      "cliente": "Hotel Prado Suites",
+      "lineas": [
+        {
+          "producto": "café blend",
+          "cantidad": 10
+        }
+      ],
+      "urgente": true,
+      "resumen": "El Hotel Prado Suites solicita con urgencia 10 kg de café blend para mañana."
+    },
+    "caso": 5,
+    "acierto": true,
+    "avisos": []
+  },
+  {
+    "proveedor": "OpenAI",
+    "correo": "Buenas, ¿la factura de septiembre ya está emitida?",
+    "esperado": "consulta",
+    "reutilizado": true,
+    "resultado": {
+      "tipo": "consulta",
+      "cliente": null,
+      "lineas": [],
+      "urgente": false,
+      "resumen": "El cliente pregunta si la factura de septiembre ya está emitida."
+    },
+    "caso": 6,
+    "acierto": true,
+    "avisos": []
+  },
+  {
+    "proveedor": "OpenAI",
+    "correo": "¡Fantástico, otra vez la cafetera de Restaurante Lumbre sin sacar ni una gota! Necesitamos que reparéis la avería.",
+    "esperado": "incidencia",
+    "reutilizado": false,
+    "resultado": {
+      "tipo": "incidencia",
+      "cliente": "Restaurante Lumbre",
+      "lineas": [],
+      "urgente": true,
+      "resumen": "El Restaurante Lumbre informa de que la cafetera no saca ni una gota y solicita su reparación."
+    },
+    "caso": 7,
+    "acierto": true,
+    "avisos": []
+  },
+  {
+    "proveedor": "OpenAI",
+    "correo": "Soy del Bar La Esquina. El Hotel Prado Suites nos recomendó vuestro café. Queremos 3 kg de blend para el viernes.",
+    "esperado": "pedido",
+    "reutilizado": false,
+    "resultado": {
+      "tipo": "pedido",
+      "cliente": "Bar La Esquina",
+      "lineas": [
+        {
+          "producto": "blend",
+          "cantidad": 3
+        }
+      ],
+      "urgente": false,
+      "resumen": "El Bar La Esquina pide 3 kg de blend para el viernes."
+    },
+    "caso": 8,
+    "acierto": true,
+    "avisos": []
+  },
+  {
+    "proveedor": "OpenAI",
+    "correo": "Our grinder has stopped working. Please send a technician to Hotel Prado Suites.",
+    "esperado": "incidencia",
+    "reutilizado": false,
+    "resultado": {
+      "tipo": "incidencia",
+      "cliente": "Hotel Prado Suites",
+      "lineas": [],
+      "urgente": true,
+      "resumen": "El molinillo ha dejado de funcionar y solicitan el envío de un técnico a Hotel Prado Suites."
+    },
+    "caso": 9,
+    "acierto": true,
+    "avisos": []
+  },
+  {
+    "proveedor": "OpenAI",
+    "correo": "¿Qué diferencia hay entre vuestro café de Etiopía y el blend de hostelería?",
+    "esperado": "consulta",
+    "reutilizado": false,
+    "resultado": {
+      "tipo": "consulta",
+      "cliente": null,
+      "lineas": [],
+      "urgente": false,
+      "resumen": "El cliente pregunta por la diferencia entre el café de Etiopía y el blend de hostelería."
+    },
+    "caso": 10,
+    "acierto": true,
+    "avisos": []
+  },
+  {
+    "proveedor": "OpenAI",
+    "correo": "Soy de Café Nube Azul y quiero pedir 4 kg de blend para el lunes.",
+    "esperado": "pedido",
+    "reutilizado": false,
+    "resultado": {
+      "tipo": "pedido",
+      "cliente": "Café Nube Azul",
+      "lineas": [
+        {
+          "producto": "blend",
+          "cantidad": 4
+        }
+      ],
+      "urgente": false,
+      "resumen": "El cliente Café Nube Azul pide 4 kg de blend para el lunes."
+    },
+    "caso": 11,
+    "acierto": true,
+    "avisos": [
+      "cliente no encontrado en la base de datos: Café Nube Azul"
+    ]
+  },
+  {
+    "proveedor": "OpenAI",
+    "correo": "¿Podéis enviarnos 6 kg de blend para el martes? Confirmamos el pedido. Panadería Ibiza.",
+    "esperado": "pedido",
+    "reutilizado": false,
+    "resultado": {
+      "tipo": "pedido",
+      "cliente": "Panadería Ibiza",
+      "lineas": [
+        {
+          "producto": "blend",
+          "cantidad": 6
+        }
+      ],
+      "urgente": false,
+      "resumen": "Confirman un pedido de 6 kg de blend para el martes."
+    },
+    "caso": 12,
+    "acierto": true,
+    "avisos": []
+  },
+  {
+    "proveedor": "OpenAI",
+    "correo": "No queremos hacer un pedido todavía. Solo necesitamos saber el precio del descafeinado. Cafetería Atocha 12.",
+    "esperado": "consulta",
+    "reutilizado": false,
+    "resultado": {
+      "tipo": "consulta",
+      "cliente": "Cafetería Atocha 12",
+      "lineas": [],
+      "urgente": false,
+      "resumen": "El cliente pide saber el precio del descafeinado y no quiere hacer un pedido todavía."
+    },
+    "caso": 13,
+    "acierto": true,
+    "avisos": []
+  },
+  {
+    "proveedor": "OpenAI",
+    "correo": "Panadería Ibiza: enviad 2 kg de descafeinado y revisad el molino, que no arranca desde hoy.",
+    "esperado": "mixto",
+    "reutilizado": false,
+    "resultado": {
+      "tipo": "mixto",
+      "cliente": "Panadería Ibiza",
+      "lineas": [
+        {
+          "producto": "descafeinado",
+          "cantidad": 2
+        }
+      ],
+      "urgente": true,
+      "resumen": "Piden 2 kg de descafeinado y revisión del molino porque no arranca desde hoy."
+    },
+    "caso": 14,
+    "acierto": true,
+    "avisos": []
+  },
+  {
+    "proveedor": "OpenAI",
+    "correo": "Cafetería Atocha 12: la cafetera ya funciona, no hay ninguna avería pendiente. ¿Cuál es el horario para recoger café?",
+    "esperado": "consulta",
+    "reutilizado": false,
+    "resultado": {
+      "tipo": "consulta",
+      "cliente": "Cafetería Atocha 12",
+      "lineas": [],
+      "urgente": false,
+      "resumen": "La cafetera ya funciona y preguntan cuál es el horario para recoger café."
+    },
+    "caso": 15,
+    "acierto": true,
+    "avisos": []
+  },
+  {
+    "proveedor": "Claude",
+    "correo": "Necesito 20 kg del blend de hostelería para el viernes. Bar La Esquina.",
+    "esperado": "pedido",
+    "reutilizado": true,
+    "resultado": {
+      "tipo": "pedido",
+      "cliente": "Bar La Esquina",
+      "lineas": [
+        {
+          "producto": "blend de hostelería",
+          "cantidad": 20
+        }
+      ],
+      "urgente": true,
+      "resumen": "Bar La Esquina solicita 20 kg de blend de hostelería para el viernes."
+    },
+    "caso": 1,
+    "acierto": true,
+    "avisos": []
+  },
+  {
+    "proveedor": "Claude",
+    "correo": "El molino hace un ruido raro desde ayer, ¿podéis venir?",
+    "esperado": "incidencia",
+    "reutilizado": true,
+    "resultado": {
+      "tipo": "incidencia",
+      "cliente": null,
+      "lineas": [],
+      "urgente": true,
+      "resumen": "El molino tiene un ruido anómalo desde ayer y solicitan revisión técnica."
+    },
+    "caso": 2,
+    "acierto": true,
+    "avisos": []
+  },
+  {
+    "proveedor": "Claude",
+    "correo": "¿Tenéis café descafeinado de especialidad?",
+    "esperado": "consulta",
+    "reutilizado": true,
+    "resultado": {
+      "tipo": "consulta",
+      "cliente": null,
+      "lineas": [],
+      "urgente": false,
+      "resumen": "El cliente consulta sobre disponibilidad de café descafeinado de especialidad."
+    },
+    "caso": 3,
+    "acierto": true,
+    "avisos": []
+  },
+  {
+    "proveedor": "Claude",
+    "correo": "Mandadme 5 kg de Etiopía y, de paso, la cafetera gotea. Lumbre.",
+    "esperado": "mixto",
+    "reutilizado": true,
+    "resultado": {
+      "tipo": "mixto",
+      "cliente": "Lumbre",
+      "lineas": [
+        {
+          "producto": "Etiopía",
+          "cantidad": 5
+        }
+      ],
+      "urgente": false,
+      "resumen": "Pedido de 5 kg de Etiopía y reporte de cafetera que gotea."
+    },
+    "caso": 4,
+    "acierto": true,
+    "avisos": []
+  },
+  {
+    "proveedor": "Claude",
+    "correo": "URGENTE: sin café para mañana, 10 kg de blend. Hotel Prado Suites",
+    "esperado": "pedido",
+    "reutilizado": true,
+    "resultado": {
+      "tipo": "pedido",
+      "cliente": "Hotel Prado Suites",
+      "lineas": [
+        {
+          "producto": "blend",
+          "cantidad": 10
+        }
+      ],
+      "urgente": true,
+      "resumen": "Pedido urgente de 10 kg de blend de café para mañana."
+    },
+    "caso": 5,
+    "acierto": true,
+    "avisos": []
+  },
+  {
+    "proveedor": "Claude",
+    "correo": "Buenas, ¿la factura de septiembre ya está emitida?",
+    "esperado": "consulta",
+    "reutilizado": true,
+    "resultado": {
+      "tipo": "consulta",
+      "cliente": null,
+      "lineas": [],
+      "urgente": false,
+      "resumen": "Cliente pregunta por el estado de emisión de la factura de septiembre."
+    },
+    "caso": 6,
+    "acierto": true,
+    "avisos": []
+  },
+  {
+    "proveedor": "Claude",
+    "correo": "¡Fantástico, otra vez la cafetera de Restaurante Lumbre sin sacar ni una gota! Necesitamos que reparéis la avería.",
+    "esperado": "incidencia",
+    "reutilizado": false,
+    "resultado": {
+      "tipo": "incidencia",
+      "cliente": "Restaurante Lumbre",
+      "lineas": [],
+      "urgente": true,
+      "resumen": "La cafetera del restaurante no funciona y necesita reparación urgente."
+    },
+    "caso": 7,
+    "acierto": true,
+    "avisos": []
+  },
+  {
+    "proveedor": "Claude",
+    "correo": "Soy del Bar La Esquina. El Hotel Prado Suites nos recomendó vuestro café. Queremos 3 kg de blend para el viernes.",
+    "esperado": "pedido",
+    "reutilizado": false,
+    "resultado": {
+      "tipo": "pedido",
+      "cliente": "Bar La Esquina",
+      "lineas": [
+        {
+          "producto": "blend",
+          "cantidad": 3
+        }
+      ],
+      "urgente": false,
+      "resumen": "Bar La Esquina solicita 3 kg de blend para el viernes."
+    },
+    "caso": 8,
+    "acierto": true,
+    "avisos": []
+  },
+  {
+    "proveedor": "Claude",
+    "correo": "Our grinder has stopped working. Please send a technician to Hotel Prado Suites.",
+    "esperado": "incidencia",
+    "reutilizado": false,
+    "resultado": {
+      "tipo": "incidencia",
+      "cliente": "Hotel Prado Suites",
+      "lineas": [],
+      "urgente": true,
+      "resumen": "Solicitud de servicio técnico por avería del molinillo de café en Hotel Prado Suites."
+    },
+    "caso": 9,
+    "acierto": true,
+    "avisos": []
+  },
+  {
+    "proveedor": "Claude",
+    "correo": "¿Qué diferencia hay entre vuestro café de Etiopía y el blend de hostelería?",
+    "esperado": "consulta",
+    "reutilizado": false,
+    "resultado": {
+      "tipo": "consulta",
+      "cliente": null,
+      "lineas": [],
+      "urgente": false,
+      "resumen": "El cliente pregunta por las diferencias entre el café de Etiopía y el blend de hostelería."
+    },
+    "caso": 10,
+    "acierto": true,
+    "avisos": []
+  },
+  {
+    "proveedor": "Claude",
+    "correo": "Soy de Café Nube Azul y quiero pedir 4 kg de blend para el lunes.",
+    "esperado": "pedido",
+    "reutilizado": false,
+    "resultado": {
+      "tipo": "pedido",
+      "cliente": "Café Nube Azul",
+      "lineas": [
+        {
+          "producto": "blend",
+          "cantidad": 4
+        }
+      ],
+      "urgente": true,
+      "resumen": "Café Nube Azul solicita 4 kg de blend para entrega el lunes."
+    },
+    "caso": 11,
+    "acierto": true,
+    "avisos": [
+      "cliente no encontrado en la base de datos: Café Nube Azul"
+    ]
+  },
+  {
+    "proveedor": "Claude",
+    "correo": "¿Podéis enviarnos 6 kg de blend para el martes? Confirmamos el pedido. Panadería Ibiza.",
+    "esperado": "pedido",
+    "reutilizado": false,
+    "resultado": {
+      "tipo": "pedido",
+      "cliente": "Panadería Ibiza",
+      "lineas": [
+        {
+          "producto": "blend",
+          "cantidad": 6
+        }
+      ],
+      "urgente": true,
+      "resumen": "Pedido urgente de 6 kg de blend para entrega el martes."
+    },
+    "caso": 12,
+    "acierto": true,
+    "avisos": []
+  },
+  {
+    "proveedor": "Claude",
+    "correo": "No queremos hacer un pedido todavía. Solo necesitamos saber el precio del descafeinado. Cafetería Atocha 12.",
+    "esperado": "consulta",
+    "reutilizado": false,
+    "resultado": {
+      "tipo": "consulta",
+      "cliente": "Cafetería Atocha 12",
+      "lineas": [],
+      "urgente": false,
+      "resumen": "Consulta sobre el precio del café descafeinado."
+    },
+    "caso": 13,
+    "acierto": true,
+    "avisos": []
+  },
+  {
+    "proveedor": "Claude",
+    "correo": "Panadería Ibiza: enviad 2 kg de descafeinado y revisad el molino, que no arranca desde hoy.",
+    "esperado": "mixto",
+    "reutilizado": false,
+    "resultado": {
+      "tipo": "mixto",
+      "cliente": "Panadería Ibiza",
+      "lineas": [
+        {
+          "producto": "descafeinado",
+          "cantidad": 2
+        }
+      ],
+      "urgente": true,
+      "resumen": "Panadería Ibiza solicita 2 kg de descafeinado y reporta que el molino no arranca desde hoy."
+    },
+    "caso": 14,
+    "acierto": true,
+    "avisos": []
+  },
+  {
+    "proveedor": "Claude",
+    "correo": "Cafetería Atocha 12: la cafetera ya funciona, no hay ninguna avería pendiente. ¿Cuál es el horario para recoger café?",
+    "esperado": "consulta",
+    "reutilizado": false,
+    "resultado": {
+      "tipo": "consulta",
+      "cliente": "Cafetería Atocha 12",
+      "lineas": [],
+      "urgente": false,
+      "resumen": "Cliente consulta el horario de recogida de café tras confirmar que su cafetera funciona correctamente."
+    },
+    "caso": 15,
+    "acierto": true,
+    "avisos": []
+  },
+  {
+    "proveedor": "Gemini",
+    "correo": "Necesito 20 kg del blend de hostelería para el viernes. Bar La Esquina.",
+    "esperado": "pedido",
+    "reutilizado": true,
+    "resultado": {
+      "tipo": "pedido",
+      "cliente": "Bar La Esquina",
+      "lineas": [
+        {
+          "producto": "blend de hostelería",
+          "cantidad": 20
+        }
+      ],
+      "urgente": false,
+      "resumen": "Pedido de 20 kg de blend de hostelería para el viernes para el Bar La Esquina."
+    },
+    "caso": 1,
+    "acierto": true,
+    "avisos": []
+  },
+  {
+    "proveedor": "Gemini",
+    "correo": "El molino hace un ruido raro desde ayer, ¿podéis venir?",
+    "esperado": "incidencia",
+    "reutilizado": true,
+    "resultado": {
+      "tipo": "incidencia",
+      "cliente": null,
+      "lineas": [],
+      "urgente": false,
+      "resumen": "El cliente solicita asistencia técnica porque el molino hace un ruido extraño desde ayer."
+    },
+    "caso": 2,
+    "acierto": true,
+    "avisos": []
+  },
+  {
+    "proveedor": "Gemini",
+    "correo": "¿Tenéis café descafeinado de especialidad?",
+    "esperado": "consulta",
+    "reutilizado": true,
+    "resultado": {
+      "tipo": "consulta",
+      "cliente": null,
+      "lineas": [],
+      "urgente": false,
+      "resumen": "El cliente pregunta por la disponibilidad de café descafeinado de especialidad."
+    },
+    "caso": 3,
+    "acierto": true,
+    "avisos": []
+  },
+  {
+    "proveedor": "Gemini",
+    "correo": "Mandadme 5 kg de Etiopía y, de paso, la cafetera gotea. Lumbre.",
+    "esperado": "mixto",
+    "reutilizado": true,
+    "resultado": {
+      "tipo": "mixto",
+      "cliente": "Lumbre",
+      "lineas": [
+        {
+          "producto": "Etiopía",
+          "cantidad": 5
+        }
+      ],
+      "urgente": false,
+      "resumen": "El cliente solicita 5 kg de Etiopía y reporta que su cafetera gotea."
+    },
+    "caso": 4,
+    "acierto": true,
+    "avisos": []
+  },
+  {
+    "proveedor": "Gemini",
+    "correo": "URGENTE: sin café para mañana, 10 kg de blend. Hotel Prado Suites",
+    "esperado": "pedido",
+    "reutilizado": true,
+    "resultado": {
+      "tipo": "pedido",
+      "cliente": "Hotel Prado Suites",
+      "lineas": [
+        {
+          "producto": "blend",
+          "cantidad": 10
+        }
+      ],
+      "urgente": true,
+      "resumen": "Hotel Prado Suites solicita un pedido urgente de 10 kg de blend para mañana."
+    },
+    "caso": 5,
+    "acierto": true,
+    "avisos": []
+  },
+  {
+    "proveedor": "Gemini",
+    "correo": "Buenas, ¿la factura de septiembre ya está emitida?",
+    "esperado": "consulta",
+    "reutilizado": true,
+    "resultado": {
+      "tipo": "consulta",
+      "cliente": null,
+      "lineas": [],
+      "urgente": false,
+      "resumen": "El cliente pregunta si la factura de septiembre ya ha sido emitida."
+    },
+    "caso": 6,
+    "acierto": true,
+    "avisos": []
+  },
+  {
+    "proveedor": "Gemini",
+    "correo": "¡Fantástico, otra vez la cafetera de Restaurante Lumbre sin sacar ni una gota! Necesitamos que reparéis la avería.",
+    "esperado": "incidencia",
+    "reutilizado": false,
+    "resultado": {
+      "tipo": "incidencia",
+      "cliente": "Restaurante Lumbre",
+      "lineas": [],
+      "urgente": true,
+      "resumen": "Avería en la cafetera de Restaurante Lumbre que no dispensa café."
+    },
+    "caso": 7,
+    "acierto": true,
+    "avisos": []
+  },
+  {
+    "proveedor": "Gemini",
+    "correo": "Soy del Bar La Esquina. El Hotel Prado Suites nos recomendó vuestro café. Queremos 3 kg de blend para el viernes.",
+    "esperado": "pedido",
+    "reutilizado": false,
+    "resultado": {
+      "tipo": "pedido",
+      "cliente": "Bar La Esquina",
+      "lineas": [
+        {
+          "producto": "blend",
+          "cantidad": 3
+        }
+      ],
+      "urgente": false,
+      "resumen": "Bar La Esquina solicita un pedido de 3 kg de café blend para el viernes."
+    },
+    "caso": 8,
+    "acierto": true,
+    "avisos": []
+  },
+  {
+    "proveedor": "Gemini",
+    "correo": "Our grinder has stopped working. Please send a technician to Hotel Prado Suites.",
+    "esperado": "incidencia",
+    "reutilizado": false,
+    "resultado": {
+      "tipo": "incidencia",
+      "cliente": "Hotel Prado Suites",
+      "lineas": [],
+      "urgente": false,
+      "resumen": "El molinillo de café ha dejado de funcionar y solicitan asistencia técnica en el hotel."
+    },
+    "caso": 9,
+    "acierto": true,
+    "avisos": []
+  },
+  {
+    "proveedor": "Gemini",
+    "correo": "¿Qué diferencia hay entre vuestro café de Etiopía y el blend de hostelería?",
+    "esperado": "consulta",
+    "reutilizado": false,
+    "resultado": {
+      "tipo": "consulta",
+      "cliente": null,
+      "lineas": [],
+      "urgente": false,
+      "resumen": "El cliente pregunta por la diferencia entre el café de Etiopía y el blend de hostelería."
+    },
+    "caso": 10,
+    "acierto": true,
+    "avisos": []
+  },
+  {
+    "proveedor": "Gemini",
+    "correo": "Soy de Café Nube Azul y quiero pedir 4 kg de blend para el lunes.",
+    "esperado": "pedido",
+    "reutilizado": false,
+    "resultado": {
+      "tipo": "pedido",
+      "cliente": "Café Nube Azul",
+      "lineas": [
+        {
+          "producto": "blend",
+          "cantidad": 4
+        }
+      ],
+      "urgente": false,
+      "resumen": "Café Nube Azul realiza un pedido de 4 kg de blend para el lunes."
+    },
+    "caso": 11,
+    "acierto": true,
+    "avisos": [
+      "cliente no encontrado en la base de datos: Café Nube Azul"
+    ]
+  },
+  {
+    "proveedor": "Gemini",
+    "correo": "¿Podéis enviarnos 6 kg de blend para el martes? Confirmamos el pedido. Panadería Ibiza.",
+    "esperado": "pedido",
+    "reutilizado": false,
+    "resultado": {
+      "tipo": "pedido",
+      "cliente": "Panadería Ibiza",
+      "lineas": [
+        {
+          "producto": "blend",
+          "cantidad": 6
+        }
+      ],
+      "urgente": false,
+      "resumen": "Panadería Ibiza confirma un pedido de 6 kg de blend para el martes."
+    },
+    "caso": 12,
+    "acierto": true,
+    "avisos": []
+  },
+  {
+    "proveedor": "Gemini",
+    "correo": "No queremos hacer un pedido todavía. Solo necesitamos saber el precio del descafeinado. Cafetería Atocha 12.",
+    "esperado": "consulta",
+    "reutilizado": false,
+    "resultado": {
+      "tipo": "consulta",
+      "cliente": "Cafetería Atocha 12",
+      "lineas": [],
+      "urgente": false,
+      "resumen": "El cliente solicita información sobre el precio del café descafeinado."
+    },
+    "caso": 13,
+    "acierto": true,
+    "avisos": []
+  },
+  {
+    "proveedor": "Gemini",
+    "correo": "Panadería Ibiza: enviad 2 kg de descafeinado y revisad el molino, que no arranca desde hoy.",
+    "esperado": "mixto",
+    "reutilizado": false,
+    "resultado": {
+      "tipo": "mixto",
+      "cliente": "Panadería Ibiza",
+      "lineas": [
+        {
+          "producto": "descafeinado",
+          "cantidad": 2
+        }
+      ],
+      "urgente": false,
+      "resumen": "Panadería Ibiza solicita 2 kg de descafeinado y notifica una avería en el molino que no arranca."
+    },
+    "caso": 14,
+    "acierto": true,
+    "avisos": []
+  },
+  {
+    "proveedor": "Gemini",
+    "correo": "Cafetería Atocha 12: la cafetera ya funciona, no hay ninguna avería pendiente. ¿Cuál es el horario para recoger café?",
+    "esperado": "consulta",
+    "reutilizado": false,
+    "resultado": {
+      "tipo": "consulta",
+      "cliente": "Cafetería Atocha 12",
+      "lineas": [],
+      "urgente": false,
+      "resumen": "El cliente informa que la cafetera funciona y pregunta por el horario de recogida de café."
+    },
+    "caso": 15,
+    "acierto": true,
+    "avisos": []
+  }
+]

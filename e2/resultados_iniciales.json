@@ -1,0 +1,281 @@
+[
+  {
+    "proveedor": "OpenAI",
+    "correo": "Necesito 20 kg del blend de hostelería para el viernes. Bar La Esquina.",
+    "esperado": "pedido",
+    "reutilizado": false,
+    "resultado": {
+      "tipo": "pedido",
+      "cliente": "Bar La Esquina",
+      "lineas": [
+        {
+          "producto": "blend de hostelería",
+          "cantidad": 20
+        }
+      ],
+      "urgente": true,
+      "resumen": "Pedido de 20 kg de blend de hostelería para el viernes del Bar La Esquina."
+    }
+  },
+  {
+    "proveedor": "OpenAI",
+    "correo": "El molino hace un ruido raro desde ayer, ¿podéis venir?",
+    "esperado": "incidencia",
+    "reutilizado": false,
+    "resultado": {
+      "tipo": "incidencia",
+      "cliente": null,
+      "lineas": [],
+      "urgente": true,
+      "resumen": "El cliente informa de que el molino hace un ruido raro desde ayer y pide asistencia."
+    }
+  },
+  {
+    "proveedor": "OpenAI",
+    "correo": "¿Tenéis café descafeinado de especialidad?",
+    "esperado": "consulta",
+    "reutilizado": false,
+    "resultado": {
+      "tipo": "consulta",
+      "cliente": null,
+      "lineas": [],
+      "urgente": false,
+      "resumen": "El cliente pregunta si disponéis de café descafeinado de especialidad."
+    }
+  },
+  {
+    "proveedor": "OpenAI",
+    "correo": "Mandadme 5 kg de Etiopía y, de paso, la cafetera gotea. Lumbre.",
+    "esperado": "mixto",
+    "reutilizado": false,
+    "resultado": {
+      "tipo": "mixto",
+      "cliente": "Lumbre",
+      "lineas": [
+        {
+          "producto": "Etiopía",
+          "cantidad": 5
+        }
+      ],
+      "urgente": false,
+      "resumen": "Piden 5 kg de café Etiopía y avisan de que la cafetera gotea."
+    }
+  },
+  {
+    "proveedor": "OpenAI",
+    "correo": "URGENTE: sin café para mañana, 10 kg de blend. Hotel Prado Suites",
+    "esperado": "pedido",
+    "reutilizado": false,
+    "resultado": {
+      "tipo": "pedido",
+      "cliente": "Hotel Prado Suites",
+      "lineas": [
+        {
+          "producto": "café blend",
+          "cantidad": 10
+        }
+      ],
+      "urgente": true,
+      "resumen": "El Hotel Prado Suites solicita con urgencia 10 kg de café blend para mañana."
+    }
+  },
+  {
+    "proveedor": "OpenAI",
+    "correo": "Buenas, ¿la factura de septiembre ya está emitida?",
+    "esperado": "consulta",
+    "reutilizado": false,
+    "resultado": {
+      "tipo": "consulta",
+      "cliente": null,
+      "lineas": [],
+      "urgente": false,
+      "resumen": "El cliente pregunta si la factura de septiembre ya está emitida."
+    }
+  },
+  {
+    "proveedor": "Claude",
+    "correo": "Necesito 20 kg del blend de hostelería para el viernes. Bar La Esquina.",
+    "esperado": "pedido",
+    "reutilizado": false,
+    "resultado": {
+      "tipo": "pedido",
+      "cliente": "Bar La Esquina",
+      "lineas": [
+        {
+          "producto": "blend de hostelería",
+          "cantidad": 20
+        }
+      ],
+      "urgente": true,
+      "resumen": "Bar La Esquina solicita 20 kg de blend de hostelería para el viernes."
+    }
+  },
+  {
+    "proveedor": "Claude",
+    "correo": "El molino hace un ruido raro desde ayer, ¿podéis venir?",
+    "esperado": "incidencia",
+    "reutilizado": false,
+    "resultado": {
+      "tipo": "incidencia",
+      "cliente": null,
+      "lineas": [],
+      "urgente": true,
+      "resumen": "El molino tiene un ruido anómalo desde ayer y solicitan revisión técnica."
+    }
+  },
+  {
+    "proveedor": "Claude",
+    "correo": "¿Tenéis café descafeinado de especialidad?",
+    "esperado": "consulta",
+    "reutilizado": false,
+    "resultado": {
+      "tipo": "consulta",
+      "cliente": null,
+      "lineas": [],
+      "urgente": false,
+      "resumen": "El cliente consulta sobre disponibilidad de café descafeinado de especialidad."
+    }
+  },
+  {
+    "proveedor": "Claude",
+    "correo": "Mandadme 5 kg de Etiopía y, de paso, la cafetera gotea. Lumbre.",
+    "esperado": "mixto",
+    "reutilizado": false,
+    "resultado": {
+      "tipo": "mixto",
+      "cliente": "Lumbre",
+      "lineas": [
+        {
+          "producto": "Etiopía",
+          "cantidad": 5
+        }
+      ],
+      "urgente": false,
+      "resumen": "Pedido de 5 kg de Etiopía y reporte de cafetera que gotea."
+    }
+  },
+  {
+    "proveedor": "Claude",
+    "correo": "URGENTE: sin café para mañana, 10 kg de blend. Hotel Prado Suites",
+    "esperado": "pedido",
+    "reutilizado": false,
+    "resultado": {
+      "tipo": "pedido",
+      "cliente": "Hotel Prado Suites",
+      "lineas": [
+        {
+          "producto": "blend",
+          "cantidad": 10
+        }
+      ],
+      "urgente": true,
+      "resumen": "Pedido urgente de 10 kg de blend de café para mañana."
+    }
+  },
+  {
+    "proveedor": "Claude",
+    "correo": "Buenas, ¿la factura de septiembre ya está emitida?",
+    "esperado": "consulta",
+    "reutilizado": false,
+    "resultado": {
+      "tipo": "consulta",
+      "cliente": null,
+      "lineas": [],
+      "urgente": false,
+      "resumen": "Cliente pregunta por el estado de emisión de la factura de septiembre."
+    }
+  },
+  {
+    "proveedor": "Gemini",
+    "correo": "Necesito 20 kg del blend de hostelería para el viernes. Bar La Esquina.",
+    "esperado": "pedido",
+    "reutilizado": false,
+    "resultado": {
+      "tipo": "pedido",
+      "cliente": "Bar La Esquina",
+      "lineas": [
+        {
+          "producto": "blend de hostelería",
+          "cantidad": 20
+        }
+      ],
+      "urgente": false,
+      "resumen": "Pedido de 20 kg de blend de hostelería para el viernes para el Bar La Esquina."
+    }
+  },
+  {
+    "proveedor": "Gemini",
+    "correo": "El molino hace un ruido raro desde ayer, ¿podéis venir?",
+    "esperado": "incidencia",
+    "reutilizado": false,
+    "resultado": {
+      "tipo": "incidencia",
+      "cliente": null,
+      "lineas": [],
+      "urgente": false,
+      "resumen": "El cliente solicita asistencia técnica porque el molino hace un ruido extraño desde ayer."
+    }
+  },
+  {
+    "proveedor": "Gemini",
+    "correo": "¿Tenéis café descafeinado de especialidad?",
+    "esperado": "consulta",
+    "reutilizado": false,
+    "resultado": {
+      "tipo": "consulta",
+      "cliente": null,
+      "lineas": [],
+      "urgente": false,
+      "resumen": "El cliente pregunta por la disponibilidad de café descafeinado de especialidad."
+    }
+  },
+  {
+    "proveedor": "Gemini",
+    "correo": "Mandadme 5 kg de Etiopía y, de paso, la cafetera gotea. Lumbre.",
+    "esperado": "mixto",
+    "reutilizado": false,
+    "resultado": {
+      "tipo": "mixto",
+      "cliente": "Lumbre",
+      "lineas": [
+        {
+          "producto": "Etiopía",
+          "cantidad": 5
+        }
+      ],
+      "urgente": false,
+      "resumen": "El cliente solicita 5 kg de Etiopía y reporta que su cafetera gotea."
+    }
+  },
+  {
+    "proveedor": "Gemini",
+    "correo": "URGENTE: sin café para mañana, 10 kg de blend. Hotel Prado Suites",
+    "esperado": "pedido",
+    "reutilizado": false,
+    "resultado": {
+      "tipo": "pedido",
+      "cliente": "Hotel Prado Suites",
+      "lineas": [
+        {
+          "producto": "blend",
+          "cantidad": 10
+        }
+      ],
+      "urgente": true,
+      "resumen": "Hotel Prado Suites solicita un pedido urgente de 10 kg de blend para mañana."
+    }
+  },
+  {
+    "proveedor": "Gemini",
+    "correo": "Buenas, ¿la factura de septiembre ya está emitida?",
+    "esperado": "consulta",
+    "reutilizado": false,
+    "resultado": {
+      "tipo": "consulta",
+      "cliente": null,
+      "lineas": [],
+      "urgente": false,
+      "resumen": "El cliente pregunta si la factura de septiembre ya ha sido emitida."
+    }
+  }
+]
