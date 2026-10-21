@@ -20,6 +20,7 @@ def preguntar(pregunta: str, max_vueltas: int = 5) -> str:
             model=os.environ["OPENAI_MODEL"], instructions=SISTEMA,
             tools=para_openai(), input=entrada,
         )
+        print(f"  tokens: {r.usage}", flush=True)
         entrada += r.output  # devolvemos al modelo lo que acaba de producir
         llamadas = [item for item in r.output if item.type == "function_call"]
         if not llamadas:  # sin llamadas pendientes: es la respuesta final
