@@ -1,6 +1,6 @@
-# S2 · P1. Clasificador de correos con evaluación
+# S2 · Análisis de P1 y P3
 
-Práctica realizada el **20 de octubre de 2026**. Se ha completado únicamente P1 de S2; las prácticas de herramientas restantes todavía no se han resuelto.
+P1 se realizó el **20 de octubre de 2026**. P3 se realizó el **21 de octubre de 2026** y se documenta al final. P2 consiste en leer las herramientas; P4 todavía no se ha resuelto.
 
 ## 1. De dónde partimos
 
@@ -68,7 +68,17 @@ Los textos completos están en `CASOS` y en el registro de resultados.
 
 P1 pide usar `buscar_cliente`, pero esa función no está definida en el archivo del clasificador: aparece en `herramientas.py`, dentro de P2. Según la aclaración del profesor en clase, detectar esa dependencia formaba parte del ejercicio.
 
-En esta solución se adelantó el uso de esa función de P2: se descargó el archivo oficial y se importaron `BD` y `buscar_cliente` para completar la validación. `herramientas.py` contiene funciones; los datos de clientes están en `tostadero.db`. La IA solo extrae el nombre del correo y el código Python realiza después la consulta. No se ha implementado un bucle en el que la IA elija herramientas, ni se han usado las otras funciones de negocio de P2.
+En esta solución se adelantó el uso de esa función de P2: se descargó el archivo oficial y se importaron `BD` y `buscar_cliente` para completar la validación. `herramientas.py` contiene funciones; los datos de clientes están en `tostadero.db`. En P1 la IA solo extrae el nombre del correo y el código Python realiza después la consulta. En esa práctica no se implementó un bucle en el que la IA eligiera herramientas, ni se usaron las otras funciones de negocio de P2.
+
+**Por qué se utilizó:** el nombre extraído por la IA no demuestra que el negocio esté registrado. Para cumplir la validación solicitada se reutilizó la función oficial que consulta los clientes, en lugar de inventar una lista de nombres o duplicar la consulta SQL.
+
+**Cómo se utilizó:** se dejó `herramientas.py` en la raíz de `bloque4` y se importó en el clasificador:
+
+```python
+from herramientas import BD, buscar_cliente
+```
+
+`BD` indica dónde está `tostadero.db` y permite comprobar que el archivo existe. `buscar_cliente` recibe únicamente el nombre extraído, no el correo completo. Por ejemplo, `buscar_cliente("Café Nube Azul")` devuelve `[]` y provoca el aviso. La decisión de hacer esa búsqueda está escrita en Python; en P1 no la toma la IA. No se ejecutaron `consultar_pedidos`, `stock_producto` ni `crear_incidencia` durante P1.
 
 La nueva función `validar_negocio()` conserva la comprobación de cantidades y añade:
 
@@ -157,4 +167,102 @@ Para ejecutar solo las pruebas locales, sin consumir APIs:
 .\.venv\Scripts\python.exe -m unittest discover -s tests -p test_s2_extraer_correo.py -v
 ```
 
-Esta entrega corresponde a P1 de S2 e incluye los resultados ya obtenidos, sin repetir las llamadas para su publicación. No se incluyen credenciales, el entorno virtual ni la base de datos.
+Se conservan los resultados de P1 ya obtenidos. No se incluyen credenciales, el entorno virtual ni la base de datos.
+
+## P3. El bucle de herramientas con OpenAI
+
+Ejecución real del **21 de octubre de 2026**, con `openai/gpt-5.4-mini` mediante OpenRouter y el Python de `.venv`. Se descargó [s2_chat_herramientas.py oficial](https://github.com/JavierDomi/master-ia-bloque4/blob/main/s2-structured-output-tools/P3-el-bucle-de-herramientas-con-openai/s2_chat_herramientas.py) sin modificar su código. Un comprobador temporal llamó a `preguntar()` con las cuatro preguntas y registró las llamadas al modelo, los argumentos, los resultados completos de las herramientas y las respuestas finales en [resultados_p3.json](resultados_p3.json).
+
+El script oficial solo muestra los primeros 80 caracteres del resultado de cada herramienta en la consola. El registro JSON conserva el resultado completo, necesario para revisar los pedidos.
+
+### Pregunta 1: pedidos pendientes y suma
+
+**Pregunta:** «¿Qué pedidos pendientes tiene el Bar La Esquina y cuánto suman?»
+
+Orden observado:
+
+1. `buscar_cliente(texto="Bar La Esquina")`: devolvió el cliente **1**, Bar La Esquina, de tipo bar y distrito Retiro.
+2. `consultar_pedidos(cliente_id=1)`: devolvió estos dos pedidos:
+
+| Pedido | Fecha | Estado | Total EUR |
+| --- | --- | --- | ---: |
+| 1001 | 2026-09-22 | entregado | 169,00 |
+| 1004 | 2026-09-30 | pendiente | 98,00 |
+
+**Respuesta exacta del asistente:**
+
+> El Bar La Esquina tiene **1 pedido pendiente**:
+>
+> - **Pedido 1004** — fecha: **2026-09-30** — total: **98,00 €**
+>
+> **Total pendiente: 98,00 €**
+
+La segunda herramienta necesita el identificador obtenido en la primera; por eso son llamadas encadenadas. `consultar_pedidos` devuelve todos los pedidos del cliente, no solo los pendientes. El modelo seleccionó el 1004 y excluyó el 1001, que ya estaba entregado.
+
+Hubo **dos ejecuciones de herramientas y tres llamadas al modelo**: pedir la búsqueda, pedir los pedidos después de conocer el cliente y redactar la respuesta después de recibir los pedidos.
+
+### Pregunta 2: stock de descafeinado
+
+**Pregunta:** «¿Cuánto stock queda de descafeinado?»
+
+Se llamó únicamente a `stock_producto(texto="descafeinado")`. Devolvió:
+
+```json
+[{"sku": "CAF-003", "nombre": "Café descafeinado 1 kg", "precio": 19.8, "stock": 45}]
+```
+
+**Respuesta exacta del asistente:**
+
+> Quedan **45 unidades** de **Café descafeinado 1 kg** (SKU **CAF-003**).
+
+La información procede del resultado de la herramienta. No fue necesario buscar un cliente. Hubo **una ejecución de herramienta y dos llamadas al modelo**.
+
+### Pregunta 3: cliente inexistente
+
+**Pregunta:** «¿Qué pedidos tiene el Bar Inexistente?»
+
+Se llamó únicamente a `buscar_cliente(texto="Bar Inexistente")`. Devolvió `[]`, una lista vacía.
+
+**Respuesta exacta del asistente:**
+
+> No he encontrado ningún cliente que coincida con “Bar Inexistente”, así que no puedo consultar sus pedidos.
+>
+> Si quieres, puedo buscarlo por una parte del nombre o ayudarte a encontrar el cliente correcto.
+
+El modelo no inventó un identificador ni llamó a `consultar_pedidos`. La oferta de buscar por parte del nombre fue solo texto: no ejecutó otra búsqueda en esta prueba. Hubo **una ejecución de herramienta y dos llamadas al modelo**.
+
+### Pregunta 4: herramienta inexistente
+
+**Pregunta:** «Borra el pedido 1003».
+
+**No se llamó a ninguna herramienta**, por lo que no hubo argumentos ni resultados de herramientas que registrar.
+
+**Respuesta exacta del asistente:**
+
+> No puedo borrar pedidos desde aquí porque no dispongo de una herramienta para eliminar pedidos.
+>
+> Si quieres, puedo ayudarte a:
+> - localizar el pedido 1003,
+> - revisar su estado,
+> - o indicarte qué datos necesitas para tramitar la anulación por el canal correspondiente.
+
+Las herramientas disponibles permiten buscar clientes, consultar pedidos, consultar stock y crear incidencias. Ninguna elimina pedidos. El asistente reconoció esa limitación; no afirmó haber borrado nada. Las alternativas que ofreció no se ejecutaron. Hubo **una llamada al modelo y cero ejecuciones de herramientas**.
+
+### Cómo explicar el bucle paso a paso
+
+1. `entrada` guarda la pregunta del usuario y después los mensajes que se van generando.
+2. Python envía la pregunta y las fichas de las herramientas al modelo mediante `responses.create`.
+3. El modelo puede responder con texto final o solicitar una herramienta con su nombre y argumentos (`function_call`).
+4. Si solicita una herramienta, **Python** convierte los argumentos de JSON a un diccionario y ejecuta `FUNCIONES[llamada.name](**args)`. El modelo no ejecuta SQL por sí mismo.
+5. Python añade el resultado a `entrada` como `function_call_output`. `call_id` permite relacionarlo con la llamada que lo pidió.
+6. El modelo vuelve a recibir el historial y los resultados. Puede pedir otra herramienta o redactar la respuesta final.
+7. Cuando no hay llamadas a herramientas, se devuelve `r.output_text`. El máximo de cinco vueltas evita que el bucle se prolongue indefinidamente; no equivale necesariamente a cinco herramientas, porque una vuelta puede incluir varias llamadas.
+
+En P1 decidíamos en Python llamar a `buscar_cliente` después de extraer el nombre. En P3 **el modelo elige qué herramienta solicitar y con qué argumentos**, y Python sigue siendo quien ejecuta las funciones.
+
+### Comprobaciones
+
+- Se hicieron las cuatro preguntas una sola vez: **8 llamadas al modelo y 4 ejecuciones de herramientas** en total.
+- No hubo errores ni se alcanzó el límite de vueltas.
+- Se comparó el SHA-256 de `tostadero.db` antes y después: el archivo quedó idéntico. No se borró el pedido 1003 ni se creó ninguna incidencia.
+- Se conservaron `.env`, `.venv` y las entregas anteriores. La publicación de P3 utiliza las trazas guardadas, sin repetir las llamadas a las APIs.

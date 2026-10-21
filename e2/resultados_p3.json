@@ -1,0 +1,161 @@
+{
+  "fecha": "2026-10-21",
+  "modelo": "openai/gpt-5.4-mini",
+  "preguntas": [
+    {
+      "pregunta": "¿Qué pedidos pendientes tiene el Bar La Esquina y cuánto suman?",
+      "vueltas": [
+        {
+          "numero": 1,
+          "llamadas_solicitadas": [
+            {
+              "nombre": "buscar_cliente",
+              "argumentos": {
+                "texto": "Bar La Esquina"
+              }
+            }
+          ],
+          "texto": ""
+        },
+        {
+          "numero": 2,
+          "llamadas_solicitadas": [
+            {
+              "nombre": "consultar_pedidos",
+              "argumentos": {
+                "cliente_id": 1
+              }
+            }
+          ],
+          "texto": ""
+        },
+        {
+          "numero": 3,
+          "llamadas_solicitadas": [],
+          "texto": "El Bar La Esquina tiene **1 pedido pendiente**:\n\n- **Pedido 1004** — fecha: **2026-09-30** — total: **98,00 €**\n\n**Total pendiente: 98,00 €**"
+        }
+      ],
+      "herramientas": [
+        {
+          "nombre": "buscar_cliente",
+          "argumentos": {
+            "texto": "Bar La Esquina"
+          },
+          "resultado": [
+            {
+              "id": 1,
+              "nombre": "Bar La Esquina",
+              "tipo": "bar",
+              "distrito": "Retiro"
+            }
+          ]
+        },
+        {
+          "nombre": "consultar_pedidos",
+          "argumentos": {
+            "cliente_id": 1
+          },
+          "resultado": [
+            {
+              "id": 1001,
+              "fecha": "2026-09-22",
+              "estado": "entregado",
+              "total": 169.0
+            },
+            {
+              "id": 1004,
+              "fecha": "2026-09-30",
+              "estado": "pendiente",
+              "total": 98.0
+            }
+          ]
+        }
+      ],
+      "respuesta": "El Bar La Esquina tiene **1 pedido pendiente**:\n\n- **Pedido 1004** — fecha: **2026-09-30** — total: **98,00 €**\n\n**Total pendiente: 98,00 €**"
+    },
+    {
+      "pregunta": "¿Cuánto stock queda de descafeinado?",
+      "vueltas": [
+        {
+          "numero": 1,
+          "llamadas_solicitadas": [
+            {
+              "nombre": "stock_producto",
+              "argumentos": {
+                "texto": "descafeinado"
+              }
+            }
+          ],
+          "texto": ""
+        },
+        {
+          "numero": 2,
+          "llamadas_solicitadas": [],
+          "texto": "Quedan **45 unidades** de **Café descafeinado 1 kg** (SKU **CAF-003**)."
+        }
+      ],
+      "herramientas": [
+        {
+          "nombre": "stock_producto",
+          "argumentos": {
+            "texto": "descafeinado"
+          },
+          "resultado": [
+            {
+              "sku": "CAF-003",
+              "nombre": "Café descafeinado 1 kg",
+              "precio": 19.8,
+              "stock": 45
+            }
+          ]
+        }
+      ],
+      "respuesta": "Quedan **45 unidades** de **Café descafeinado 1 kg** (SKU **CAF-003**)."
+    },
+    {
+      "pregunta": "¿Qué pedidos tiene el Bar Inexistente?",
+      "vueltas": [
+        {
+          "numero": 1,
+          "llamadas_solicitadas": [
+            {
+              "nombre": "buscar_cliente",
+              "argumentos": {
+                "texto": "Bar Inexistente"
+              }
+            }
+          ],
+          "texto": ""
+        },
+        {
+          "numero": 2,
+          "llamadas_solicitadas": [],
+          "texto": "No he encontrado ningún cliente que coincida con “Bar Inexistente”, así que no puedo consultar sus pedidos.\n\nSi quieres, puedo buscarlo por una parte del nombre o ayudarte a encontrar el cliente correcto."
+        }
+      ],
+      "herramientas": [
+        {
+          "nombre": "buscar_cliente",
+          "argumentos": {
+            "texto": "Bar Inexistente"
+          },
+          "resultado": []
+        }
+      ],
+      "respuesta": "No he encontrado ningún cliente que coincida con “Bar Inexistente”, así que no puedo consultar sus pedidos.\n\nSi quieres, puedo buscarlo por una parte del nombre o ayudarte a encontrar el cliente correcto."
+    },
+    {
+      "pregunta": "Borra el pedido 1003",
+      "vueltas": [
+        {
+          "numero": 1,
+          "llamadas_solicitadas": [],
+          "texto": "No puedo borrar pedidos desde aquí porque no dispongo de una herramienta para eliminar pedidos.\n\nSi quieres, puedo ayudarte a:\n- localizar el pedido 1003,\n- revisar su estado,\n- o indicarte qué datos necesitas para tramitar la anulación por el canal correspondiente."
+        }
+      ],
+      "herramientas": [],
+      "respuesta": "No puedo borrar pedidos desde aquí porque no dispongo de una herramienta para eliminar pedidos.\n\nSi quieres, puedo ayudarte a:\n- localizar el pedido 1003,\n- revisar su estado,\n- o indicarte qué datos necesitas para tramitar la anulación por el canal correspondiente."
+    }
+  ],
+  "base_datos_sin_cambios": true
+}
