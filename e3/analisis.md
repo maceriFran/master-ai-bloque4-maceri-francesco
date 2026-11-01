@@ -4,9 +4,6 @@ Francesco Maceri · S3, prácticas 1, 2 y 3 · 1 de noviembre de 2026
 
 ## Archivos y ejecución
 
-La estructura sigue la carpeta `e3/` de Dani. La implementación parte de los scripts
-y las diapositivas de JavierDomi; no se ha utilizado el código ni el análisis de Dani.
-
 - `s3_agente.py`: P1, agente manual con herramientas, errores, trazas y aprobación.
 - `s3_experimentos.py`: P2, menú con los cinco experimentos del enunciado.
 - `s3_agente_langchain.py`: P3, el mismo caso mediante `create_agent` y middleware.
