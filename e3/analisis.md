@@ -96,14 +96,6 @@ ante una respuesta final, impedir inserciones con datos inválidos y mantener el
 de LangChain después de una aprobación. Estas comprobaciones usan respuestas simuladas;
 las trazas del anexo proceden de llamadas reales al modelo.
 
-## Fuentes
-
-- [Enunciados y código de S3, JavierDomi](https://github.com/JavierDomi/master-ia-bloque4/tree/main/s3-agents-loop-reasoning).
-- [Diapositivas S3, especialmente P1, P2, P3 y entregable E3](https://github.com/JavierDomi/master-ia-bloque4/blob/main/s3-agents-loop-reasoning/slides/sesion-3.pdf).
-- [Estructura de la carpeta e3 de Dani](https://github.com/Danigomez82/master-ia-bloque4-gomez-daniel/tree/main/e3).
-- [Aprobación humana en LangChain](https://docs.langchain.com/oss/python/langchain/human-in-the-loop).
-- [Middleware de LangChain](https://docs.langchain.com/oss/python/langchain/middleware/built-in).
-
 ## Anexo. Trazas completas
 
 Las trazas incluyen argumentos, resultados, tokens, decisión de aprobación y
