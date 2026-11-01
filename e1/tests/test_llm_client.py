@@ -1,5 +1,9 @@
 """Pruebas sin red: contrato del adaptador y contabilidad de tokens."""
 import unittest
+from pathlib import Path
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from types import SimpleNamespace as NS
 from unittest.mock import Mock, patch
 

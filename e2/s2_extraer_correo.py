@@ -1,7 +1,6 @@
 """Sesión 2. Salidas estructuradas: de un correo libre a un objeto validado."""
 import os
 from pathlib import Path
-import sys
 from typing import Literal
 
 import anthropic
@@ -10,11 +9,8 @@ from dotenv import load_dotenv
 from google import genai
 from pydantic import BaseModel, Field
 
-# La copia de e2 usa los mismos .env, herramientas.py y base de datos de la raíz.
-RAIZ = Path(__file__).resolve().parent
-if RAIZ.name == "e2":
-    RAIZ = RAIZ.parent
-sys.path.insert(0, str(RAIZ))
+# e2 usa sus herramientas y comparte el .env y la base de datos de bloque4.
+RAIZ = Path(__file__).resolve().parent.parent
 from herramientas import BD, buscar_cliente
 
 load_dotenv(RAIZ / ".env")

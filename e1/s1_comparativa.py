@@ -1,5 +1,6 @@
 """Sesión 1. Comparativa de proveedores sobre los mismos correos (genera comparativa.csv)."""
 import csv
+from pathlib import Path
 
 from llm_client import LLM
 
@@ -13,7 +14,7 @@ CORREOS = [
     "Somos un hotel nuevo en Centro: ¿qué café nos recomendáis para el desayuno?",
 ]
 
-with open("comparativa.csv", "w", newline="", encoding="utf-8") as f:
+with Path(__file__).with_name("comparativa.csv").open("w", newline="", encoding="utf-8") as f:
     w = csv.writer(f)
     w.writerow(["proveedor", "correo", "segundos", "tokens_entrada", "tokens_salida",
                 "coste_usd", "calidad_1a5", "respuesta"])

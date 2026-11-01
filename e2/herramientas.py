@@ -5,7 +5,7 @@ import sqlite3
 from datetime import date
 from pathlib import Path
 
-BD = Path(__file__).with_name("tostadero.db")
+BD = Path(__file__).resolve().parent.parent / "tostadero.db"
 
 
 def _consulta(sql: str, params: tuple = ()) -> list[dict]:

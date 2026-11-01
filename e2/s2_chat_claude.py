@@ -1,13 +1,8 @@
 """S2 P4. El mismo bucle de herramientas con Messages API de Claude."""
 import json
 import os
-from pathlib import Path
-import sys
 
 import anthropic
-
-# La copia de entrega utiliza los módulos y la base de datos de la raíz.
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from s2_chat_herramientas import SISTEMA
 from herramientas import FUNCIONES, para_claude

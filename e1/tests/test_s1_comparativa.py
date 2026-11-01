@@ -33,9 +33,11 @@ class ComparativaTests(unittest.TestCase):
             anterior = Path.cwd()
             try:
                 os.chdir(carpeta)
+                copia_script = Path(carpeta) / script.name
+                copia_script.write_text(script.read_text(encoding="utf-8"), encoding="utf-8")
                 with patch.dict("sys.modules", {"llm_client": SimpleNamespace(LLM=ClienteSimulado)}):
                     with contextlib.redirect_stdout(salida):
-                        variables = runpy.run_path(str(script), run_name="__main__")
+                        variables = runpy.run_path(str(copia_script), run_name="__main__")
                 with open("comparativa.csv", newline="", encoding="utf-8") as f:
                     lector = csv.DictReader(f)
                     filas = list(lector)

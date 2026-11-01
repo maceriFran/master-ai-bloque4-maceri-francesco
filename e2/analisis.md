@@ -72,7 +72,7 @@ En esta solución se adelantó el uso de esa función de P2: se descargó el arc
 
 **Por qué se utilizó:** el nombre extraído por la IA no demuestra que el negocio esté registrado. Para cumplir la validación solicitada se reutilizó la función oficial que consulta los clientes, en lugar de inventar una lista de nombres o duplicar la consulta SQL.
 
-**Cómo se utilizó:** se dejó `herramientas.py` en la raíz de `bloque4` y se importó en el clasificador:
+**Cómo se utilizó:** se dejó `herramientas.py` junto al clasificador en `e2/` y se importó en el clasificador:
 
 ```python
 from herramientas import BD, buscar_cliente
@@ -139,23 +139,20 @@ Se agrupó el bucle en `evaluar()` para poder probarlo y se añadieron:
 - Captura de errores por caso, mostrando solo la clase de error. Los casos fallidos siguen contando en el denominador.
 - Comprobación de que existe la base de datos antes de consultar.
 
-Las cuatro pruebas de `tests/test_s2_extraer_correo.py` pasaron sin llamadas a las APIs: cliente existente/desconocido, ausencia de cliente y cantidad inválida, salida `None`/excepción, y conjunto de al menos quince casos con etiquetas válidas. También se comprobó la sintaxis y que las copias de código de la raíz y `e2/` son idénticas.
+Las cuatro pruebas de `e2/tests/test_s2_extraer_correo.py` pasaron sin llamadas a las APIs: cliente existente/desconocido, ausencia de cliente y cantidad inválida, salida `None`/excepción, y conjunto de al menos quince casos con etiquetas válidas. También se comprobó la sintaxis. El código se conserva en `e2/`, sin duplicarlo en la raíz.
 
 ## 8. Archivos y ejecución
 
-- `s2_extraer_correo.py`: copia de trabajo en la raíz.
-- `herramientas.py`: funciones oficiales, en la raíz; P1 solo utiliza la búsqueda de clientes.
-- `e2/s2_extraer_correo.py`: copia para entregar.
+- `e2/s2_extraer_correo.py`: clasificador de correos.
+- `e2/herramientas.py`: funciones oficiales; P1 solo utiliza la búsqueda de clientes.
 - `e2/analisis.md`: este documento.
 - `e2/resultados_iniciales.json` y `e2/resultados_p1.json`: evidencia de las evaluaciones realizadas.
 
-La copia de `e2/` localiza `.env`, `herramientas.py` y `tostadero.db` en la raíz de `bloque4`; no necesita otro entorno ni otra base de datos.
+Los scripts de `e2/` importan las herramientas de su carpeta y localizan `.env` y `tostadero.db` en la raíz de `bloque4`; no necesitan otro entorno ni otra base de datos.
 
 Desde `bloque4`, en PowerShell:
 
 ```powershell
-.\.venv\Scripts\python.exe s2_extraer_correo.py
-# O ejecutar la copia de entrega:
 .\.venv\Scripts\python.exe e2\s2_extraer_correo.py
 ```
 
@@ -164,7 +161,7 @@ Cada ejecución normal vuelve a realizar 45 llamadas y consume saldo; no hace fa
 Para ejecutar solo las pruebas locales, sin consumir APIs:
 
 ```powershell
-.\.venv\Scripts\python.exe -m unittest discover -s tests -p test_s2_extraer_correo.py -v
+.\.venv\Scripts\python.exe -m unittest discover -s e2/tests -p test_s2_extraer_correo.py -v
 ```
 
 Se conservan los resultados de P1 ya obtenidos. No se incluyen credenciales, el entorno virtual ni la base de datos.
